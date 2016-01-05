@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // Define Person Class and Constructor that receives two parameters.
+    // Like a recipe for a cake, or a blueprint.
+    var Person = function (parameter_name, parameter_age) {
+        //Constructor
+        this.name = parameter_name;
+        this.age = parameter_age;
+
+        // Create a new Method
+        this.toString = function() {
+            return this.name + " " + this.age + "\n";
+        }
+    };
+
+    Person.prototype.getAge = function(){
+      return this.age + "\n";
+    };
+
+    // create an instance of Person and put into variable p,
+    // passing two arguments into the constructor for Person.
+    //Like a yummy complete physical cake you can eat now!
+
+    var p  = new Person("Larry", 123);
+    document.write( p.toString().replace("\n", "<br>") );
+    document.write( p.getAge().replace("\n", "<br>") );
+    document.write("<br>");
+
+    var p_billy = new Person("Billy", 456);
+    document.write( p_billy.toString().replace("\n", "<br>") );
+    document.write( p_billy.getAge().replace("\n", "<br>") );
+    document.write("<br>");
+
+    document.write( p.toString().replace("\n", "<br>") );
+    document.write( p.getAge().replace("\n", "<br>") );
+    document.write("<br>");
+
+    var people_list = []; //Array/List
+
+    people_list.push( p );
+    people_list.push( p_billy );
+    people_list.push( new Person("Suzie", 789) );
+
+    for(var i = 0; i < people_list.length; i++){
+        var item = people_list[i];
+        document.write("Index/Position: " + i + "<br>");
+        document.write( item.toString().replace("\n", "<br>") );
+        document.write( item.getAge().replace("\n", "<br>") );
+        document.write("<br>");
+    }
+
+    //ALTERNATIVE THAT ALLOWS STORAGE AND RETRIEVAL BY A KEY
+
+    var people = {}; //Dictionary/Object
+
+    people["aaa111"] = p;
+    people["bbb222"] = p_billy;
+    people["ccc333"] = new Person("Suzie", 789);
+
+    //Pull suzie out of the middle using her key.
+    document.write("<pre>"+JSON.stringify(people["ccc333"])+"</pre>");
+
+    var keys = Object.keys(people);
+    for(var i = 0; i < keys.length; i++){
+        var item = people[keys[i]];
+        document.write("ID: " + keys[i] + "<br>");
+        document.write( item.toString().replace("\n", "<br>") );
+        document.write( item.getAge().replace("\n", "<br>") );
+        document.write("<br>");
+    }
+
+    document.write("<pre>"
+            +JSON.stringify(people).
+            replace(/:/g, ":\n", true)+JSON.stringify(people).
+            replace(/{/g, "\n{", true)+
+            "</pre>");
+
+
+</script>
+</body>
+</html>
